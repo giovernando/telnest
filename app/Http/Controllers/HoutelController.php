@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\City;
+use App\Models\Houtel;
 use Illuminate\Http\Request;
 
-class CityController extends Controller
+class HoutelController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +13,9 @@ class CityController extends Controller
      */
     public function index()
     {
-        $cities = City::all(); //select * from city or mengambil data dan kasih nama
-        return view('city.index', compact('cities'));
+        $houtels = Houtel::all();
+        return view('houtel.index', compact('houtels'));
+        
     }
 
     /**
@@ -23,7 +24,7 @@ class CityController extends Controller
      */
     public function create()
     {
-        return view('city.create');
+        return view('houtel.create');
     }
 
     /**
@@ -32,12 +33,15 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-        $city = new City;
-        $city->name = $request->name;
-        $city->photo = 'photo.jpg';
-        $city->save();
+        $houtel = new Houtel;
+        $houtel->cities_id = $request->cities_id;
+        $houtel->Address = $request->address;
+        $houtel->About = $request->about;
+        $houtel->fasility = $request->fasility;
+        $houtel->photo = 'photo.jpg';
+        $houtel->save();
 
-        return redirect('/city');
+        return redirect('/houtel');
     }
 
     /**

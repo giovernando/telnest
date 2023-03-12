@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\City;
+use App\Models\Bank;
 use Illuminate\Http\Request;
 
-class CityController extends Controller
+class BankController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +13,9 @@ class CityController extends Controller
      */
     public function index()
     {
-        $cities = City::all(); //select * from city or mengambil data dan kasih nama
-        return view('city.index', compact('cities'));
+        $banks = Bank::all();
+        return view('bank.index', compact('banks'));
+        
     }
 
     /**
@@ -23,7 +24,7 @@ class CityController extends Controller
      */
     public function create()
     {
-        return view('city.create');
+        return view('bank.create');
     }
 
     /**
@@ -32,12 +33,13 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-        $city = new City;
-        $city->name = $request->name;
-        $city->photo = 'photo.jpg';
-        $city->save();
+        $bank = new Bank;
+        $bank->names = $request->names;
+        $bank->reks = $request->reks;
+        $bank->logo = $request->logo;
+        $bank->save();
 
-        return redirect('/city');
+        return redirect('/bank');
     }
 
     /**

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\City;
+use App\Models\Room;
 use Illuminate\Http\Request;
 
-class CityController extends Controller
+class RoomController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +13,9 @@ class CityController extends Controller
      */
     public function index()
     {
-        $cities = City::all(); //select * from city or mengambil data dan kasih nama
-        return view('city.index', compact('cities'));
+        $rooms = room::all();
+        return view('room.index', compact('rooms'));
+        
     }
 
     /**
@@ -23,7 +24,7 @@ class CityController extends Controller
      */
     public function create()
     {
-        return view('city.create');
+        return view('room.create');
     }
 
     /**
@@ -32,12 +33,15 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-        $city = new City;
-        $city->name = $request->name;
-        $city->photo = 'photo.jpg';
-        $city->save();
+        $room = new Room;
+        $room->houtels_id = $request->houtels_id;
+        $room->type = $request->type;
+        $room->harga = $request->harga;
+        $room->deskription = $request->deskription;
+        $room->photo = 'photo.jpg';
+        $room->save();
 
-        return redirect('/city');
+        return redirect('/room');
     }
 
     /**
